@@ -1,19 +1,22 @@
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ora Esatta</title>
+</head>
+<body>
+  <h1 id="clock"></h1>
 
-public class WorldClock {
-    public static void main(String[] args) {
-        // lista di fusi orari
-        String[] timezones = {"America/Los_Angeles", "America/New_York", "Europe/London", "Europe/Rome", "Asia/Tokyo", "Australia/Sydney"};
-
-        // ottieni l'ora corrente in ciascun fuso orario
-        for (String timezone : timezones) {
-            TimeZone tz = TimeZone.getTimeZone(timezone);
-            Calendar c = Calendar.getInstance(tz);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            sdf.setTimeZone(tz);
-            System.out.println(timezone + ": " + sdf.format(c.getTime()));
-        }
+  <script>
+    function updateClock() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+      var timeString = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+      document.getElementById('clock').textContent = timeString;
     }
-}
+
+    setInterval(updateClock, 1000); // Aggiorna l'ora ogni secondo
+  </script>
+</body>
+</html>
